@@ -1,0 +1,33 @@
+.Employee {
+	position: relative;
+  display: inline-block;
+  text-align: center;
+  margin-left: 1%;
+}
+.Employee img{
+	height: 235px;
+	width: 235px;
+}
+.rightOrWrong{
+	position: absolute;
+	opacity: 0;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+}
+.right{
+	position: absolute;
+	opacity: 0.5;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	background-color: green;
+}
+.wrong{
+	position: absolute;
+	opacity: 0.5;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	background-color: red;
+}
