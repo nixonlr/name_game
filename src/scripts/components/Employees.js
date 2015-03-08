@@ -10,12 +10,10 @@ var Employees = React.createClass({
 		console.log(this.props.employeeClickHandler);
     return (
       <div id='Employees'>
-
-      	{this.props.choices.map(function (employee, i) {
+      	{
+      		this.props.choices.map(function (employee, i) {
       			return(
-      				<div className='Employee' key={i}>
-	      				<Employee name={employee.name} url={employee.url} onClick={this.props.employeeClickHandler} />
-      				</div>
+	      				<Employee name={employee.name} url={employee.url} onClick={this.props.employeeClickHandler} key={i} />
       			);
       		}.bind(this))
 	      }

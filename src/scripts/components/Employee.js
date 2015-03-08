@@ -9,7 +9,7 @@ require('styles/Employee.css');
 var Employee = React.createClass({
   render: function () {
     return (
-        <div>
+        <div className='Employee' >
 	        <div className='rightOrWrong' id={this.props.name}>
 		        <p> {this.props.name} </p>
 	        </div>

@@ -33,7 +33,7 @@ var NameGameApp = React.createClass({
   componentDidMount: function(){
   	var choices = this.getRandomSubarray(5);
   	var answer = choices[Math.floor(Math.random() * 5)].name;
-  	this.setState({choices: choices, answer: answer});
+  	this.setState({choices: choices, answer: answer, roundOver: false});
   },
 
   findEmployee: function(name){
@@ -61,7 +61,7 @@ var NameGameApp = React.createClass({
 					this.state.choices.splice(index,1);
 				}
 				else{
-					this.state.roundOver=true;
+					this.setState({roundOver:true});
 				}
 			}
 		}
@@ -70,7 +70,7 @@ var NameGameApp = React.createClass({
 		console.log("score:" + this.state.score);
 
 		if(this.state.roundOver){
-
+			this.componentDidMount();
 		}
 
 	},
