@@ -22,38 +22,20 @@ var NameGameApp = React.createClass({
 	getInitialState: function() {
     return {
     	employees: employees,
+    	metrics:{},
 			roundOver: false,
-			choices: null,
-			answer: null,
+			choices: [],
+			answer: '',
 			score: 0,
 			turns: 0
 		};
   },
+  componentDidMount: function(){
+  	var choices = this.getRandomSubarray(5);
+  	var answer = choices[Math.floor(Math.random() * 5)].name;
+  	this.setState({choices: choices, answer: answer});
+  },
 
-  // getEmployees: function(){
-		// $.ajax({
-	 //    url: 'http://namegame.willowtreemobile.com:2000',
-	 //    success: function(employees) {
-  //       this.setState({employees: employees});
-	 //    }.bind(this),
-	 //    error: function(xhr, status, err){
-  //       console.error(url, status, err.toString());
-  //     }.bind(this)
-		// });
-  //   // $.ajax({
-  //   //   url: this.props.url,
-  //   //   dataType: 'json',
-  //   //   success: function(data){
-  //   //     this.setState({data: data});
-  //   //   }.bind(this),
-  //   //   error: function(xhr, status, err){
-  //   //     console.error(url, status, err.toString());
-  //   //   }.bind(this)
-  //   // });
-  // },
-  // componentWillMount: function(){
-  //     this.getEmployees();
-  // },
   findEmployee: function(name){
   	var person_array = this.state.choices.filter(function (employee) {
 				if (employee.name === name){
@@ -106,29 +88,22 @@ var NameGameApp = React.createClass({
     return someEmployees;
   },
 
-  prepareToRender: function(){
-  	var choices = this.getRandomSubarray(5);
-  	var answer = choices[Math.floor(Math.random() * 5)].name;
-  	this.state.choices = choices;
-  	this.state.answer = answer;
-  },
 
   render: function() {
-  	this.prepareToRender();
     return (
       <div className='main'>
 	      	<div id="whoIs">
 	      		<h3>Who is {this.state.answer}</h3>
 				  </div>
 					<div id='Employees'>
-		      	{this.state.choices.map(function (employee, i) {
-		      			return(
-		      				<div className='Employee' id={this.props.name} onClick={this.employeeClickHandler} key={i}>
-			      				<Employee name={employee.name} url={employee.url}/>
-		      				</div>
-		      			);
-		      		}.bind(this))
-			      }
+	      	{this.state.choices.map(function (employee, i) {
+	      			return(
+	      				<div className='Employee' onClick={this.employeeClickHandler} key={i}>
+		      				<Employee name={employee.name} url={employee.url}/>
+	      				</div>
+	      			);
+	      		}.bind(this))
+		      }
 	        </div>
       </div>
     );
