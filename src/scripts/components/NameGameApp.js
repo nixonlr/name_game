@@ -2,6 +2,7 @@
 
 var React = require('react/addons');
 var Employee = require('./Employee');
+var Employees = require('./Employees');
 var employees = require('../employees');
 var ReactTransitionGroup = React.addons.TransitionGroup;
 var employees;
@@ -96,14 +97,7 @@ var NameGameApp = React.createClass({
 	      		<h3>Who is {this.state.answer}</h3>
 				  </div>
 					<div id='Employees'>
-	      	{this.state.choices.map(function (employee, i) {
-	      			return(
-	      				<div className='Employee' onClick={this.employeeClickHandler} key={i}>
-		      				<Employee name={employee.name} url={employee.url}/>
-	      				</div>
-	      			);
-	      		}.bind(this))
-		      }
+						<Employees choices={this.state.choices} employeeClickHandler={this.employeeClickHandler} />
 	        </div>
       </div>
     );

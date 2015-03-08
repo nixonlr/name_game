@@ -10,7 +10,6 @@ var Employees = React.createClass({
 		console.log(this.props.employeeClickHandler);
     return (
       <div id='Employees'>
-
       	{this.props.choices.map(function (employee, i) {
       			return(
       				<div className='Employee' key={i}>
