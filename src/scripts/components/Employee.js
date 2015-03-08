@@ -10,6 +10,9 @@ var Employee = React.createClass({
 	getInitialState: function(){
 		return {initClass: 'rightOrWrong'};
 	},
+	componentWillReceiveProps: function(nextProps) {
+	  this.setState({initClass: 'rightOrWrong'});
+	},
   render: function(){
     return (
       <div className='Employee'>
