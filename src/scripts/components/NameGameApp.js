@@ -117,19 +117,19 @@ var NameGameApp = React.createClass({
   	this.prepareToRender();
     return (
       <div className='main'>
-				<ReactCSSTransitionGroup transitionName="fade">
 	      	<div id="whoIs">
 	      		<h3>Who is {this.state.answer}</h3>
 				  </div>
-	      	{this.state.choices.map(function (employee, i) {
-	      			return(
-	      				<div className='Employee' id={this.props.name} onClick={this.employeeClickHandler} key={i}>
-		      				<Employee name={employee.name} url={employee.url}/>
-	      				</div>
-	      			);
-	      		}.bind(this))
-		      }
-        </ReactCSSTransitionGroup>
+					<div id='Employees'>
+		      	{this.state.choices.map(function (employee, i) {
+		      			return(
+		      				<div className='Employee' id={this.props.name} onClick={this.employeeClickHandler} key={i}>
+			      				<Employee name={employee.name} url={employee.url}/>
+		      				</div>
+		      			);
+		      		}.bind(this))
+			      }
+	        </div>
       </div>
     );
   }
