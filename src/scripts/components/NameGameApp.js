@@ -23,12 +23,12 @@ var NameGameApp = React.createClass({
 	getInitialState: function() {
     return {
     	employees: employees,
-    	metrics:{},
+    	metrics:{attempts:[]},
 			roundOver: false,
 			choices: [],
 			answer: '',
 			score: 0,
-			turns: 0
+			attempts: 0
 		};
   },
   componentDidMount: function(){
@@ -37,44 +37,44 @@ var NameGameApp = React.createClass({
   	this.setState({choices: choices, answer: answer});
   },
 
-  findEmployee: function(name){
-  	var person_array = this.state.choices.filter(function (employee) {
-				if (employee.name === name){
-					return employee;
-				}
-			});
-		return person_array[0];
-  },
-  employeeClickHandler: function (event) {
-		var targetId = event.target.id, employee = this.findEmployee(targetId);
-		var index = this.state.choices.indexOf(employee);
+ //  findEmployee: function(name){
+ //  	var person_array = this.state.choices.filter(function (employee) {
+	// 			if (employee.name === name){
+	// 				return employee;
+	// 			}
+	// 		});
+	// 	return person_array[0];
+ //  },
+ //  employeeClickHandler: function (event) {
+	// 	var targetId = event.target.id, employee = this.findEmployee(targetId);
+	// 	var index = this.state.choices.indexOf(employee);
 
-		if(!this.state.roundOver && employee){
-			if ( targetId === this.state.answer){
-				event.target.className = 'right';
-				this.state.roundOver = true;
-				this.state.turns++;
-				this.state.choices.splice(index,1);
-			} else {
-				if (this.state.turns < 5){
-					event.target.className = 'wrong';
-					this.state.turns++;
-					this.state.choices.splice(index,1);
-				}
-				else{
-					this.state.roundOver=true;
-				}
-			}
-		}
-		console.log("choices:" + this.state.choices);
-		console.log("turns:" + this.state.turns);
-		console.log("score:" + this.state.score);
+	// 	if(!this.state.roundOver && employee){
+	// 		if ( targetId === this.state.answer){
+	// 			event.target.className = 'right';
+	// 			this.state.roundOver = true;
+	// 			this.state.attempts++;
+	// 			this.state.choices.splice(index,1);
+	// 		} else {
+	// 			if (this.state.attempts < 5){
+	// 				event.target.className = 'wrong';
+	// 				this.state.attempts++;
+	// 				this.state.choices.splice(index,1);
+	// 			}
+	// 			else{
+	// 				this.state.roundOver=true;
+	// 			}
+	// 		}
+	// 	}
+	// 	console.log("choices:" + this.state.choices);
+	// 	console.log("attempts:" + this.state.attempts);
+	// 	console.log("score:" + this.state.score);
 
-		if(this.state.roundOver){
+	// 	if(this.state.roundOver){
 
-		}
+	// 	}
 
-	},
+	// },
 
   getRandomSubarray: function(size){
   	var i = 0, index, indices = [], arrayLength = this.state.employees.length, someEmployees = [];
@@ -96,9 +96,7 @@ var NameGameApp = React.createClass({
 	      	<div id="whoIs">
 	      		<h3>Who is {this.state.answer}</h3>
 				  </div>
-					<div id='Employees'>
-						<Employees choices={this.state.choices} employeeClickHandler={this.employeeClickHandler} />
-	        </div>
+					<Employees info={{metrics: this.state.metrics, roundOver: this.state.roundOver, choices: this.state.choices, answer: this.state.answer, score: this.state.score, attempts: this.state.attempts}} />
       </div>
     );
   }
