@@ -15,8 +15,8 @@ var Employee = React.createClass({
 	},
   render: function(){
     return (
-      <div className='Employee'>
-        <div className='rightOrWrong' id={this.props.name}>
+      <div className='Employee' >
+        <div className='rightOrWrong' id={this.props.name} onClick={this.props.employeeClickHandler}>
 	        <p> {this.props.name} </p>
         </div>
           <img src={this.props.url} />

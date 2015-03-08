@@ -46,9 +46,10 @@ var NameGameApp = React.createClass({
 		return person_array[0];
   },
   employeeClickHandler: function (event) {
-  	console.log(event);
 		var targetId = event.target.id, employee = this.findEmployee(targetId);
 		var index = this.state.choices.indexOf(employee);
+  	console.log(event);
+  	console.log(targetId);
 
 		if(!this.state.roundOver && employee){
 			if ( targetId === this.state.answer){
@@ -95,9 +96,9 @@ var NameGameApp = React.createClass({
     return (
       <div className='main'>
 	      	<div id="whoIs">
-	      		<h3 onClick={this.employeeClickHandler}>Who is {this.state.answer}</h3>
+	      		<h3>Who is {this.state.answer}</h3>
 				  </div>
-					<Employees choices={this.state.choices} employeeClickHandler={this.props.employeeClickHandler} />
+					<Employees choices={this.state.choices} employeeClickHandler={this.employeeClickHandler} />
       </div>
     );
   }
