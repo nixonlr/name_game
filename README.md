@@ -1,1 +1,7 @@
-# name_game
+# Name Game
+==============
+
+```
+$ npm install
+$ grunt serve
+```
