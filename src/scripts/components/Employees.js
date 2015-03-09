@@ -2,20 +2,26 @@
 
 var React = require('react/addons');
 var Employee = require('./Employee');
+var ReactTransitionGroup = React.addons.TransitionGroup;
+
 
 require('styles/Employees.css');
 
 var Employees = React.createClass({
+	// getInitialState: function(){
+		
+	// },
+	// clickHandler:function(e){
+	// 	console.log(e)
+	// },
   render: function () {
-		console.log(this.props.employeeClickHandler);
     return (
       <div id='Employees'>
-      	{
-      		this.props.choices.map(function (employee, i) {
+      	{this.props.choices.map(function (employee, i) {
       			return(
-	      				<Employee name={employee.name} url={employee.url} onClick={this.props.employeeClickHandler} key={i} />
+      				<Employee name={employee.name} url={employee.url} employeeClickHandler=
       			);
-      		}.bind(this))
+      		},this)
 	      }
       </div>
     );
