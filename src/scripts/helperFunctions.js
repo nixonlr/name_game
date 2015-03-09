@@ -40,9 +40,10 @@ var HelperFunctions = function () {
       });
   	return results;
   };
-  this.getEmployees = function() {
-  	$.get('namegame.willowtreemobile.com:2000', function(data) {
+  this.getEmployees = function(url) {
+  	$.get(url, function(data) {
       this.employees = data;
+      console.log(data);
     }.bind(this));
   };
 };
@@ -51,5 +52,6 @@ var HelperFunctions = function () {
 
 
 var helperFunctions = new HelperFunctions();
+helperFunctions.getEmployees('http://namegame.willowtreemobile.com:2000/');
 
 module.exports = helperFunctions;

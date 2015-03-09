@@ -18,7 +18,7 @@ var NameGameApp = React.createClass({
 	getInitialState: function() {
     return {
     	mode: '',
-    	employees: employees,
+    	employees: employees,//helperFunctions.employees
     	metrics:{attempts:[], right:0, wrong:0},
 			attempts: [],
 			roundOver: false,
