@@ -6,15 +6,8 @@ var Employees = require('./Employees');
 var WhoIs = require('./WhoIs');
 var Metrics = require('./Metrics');
 var employees = require('../employees');
+var helperFunctions = require('../helperFunctions');
 var ReactTransitionGroup = React.addons.TransitionGroup;
-var employees;
-
-// $.ajax({
-//     url: 'http://namegame.willowtreemobile.com:2000',
-//     success: function(employees) {
-//         employees = employees
-//     }
-// });
 
 
 // CSS
@@ -33,35 +26,14 @@ var NameGameApp = React.createClass({
 			answer: ''
 		};
   },
-  getRandomSubarray: function(array, size){
-  	var i = 0, index, indices = [], arrayLength = this.state.employees.length, someEmployees = [];
-    while (i < size) {
-      index = Math.floor(Math.random() * arrayLength);
-      if(indices.indexOf(index) === -1){
-      	someEmployees.push(this.state.employees[index]);
-      	indices.push(index);
-      	i++;
-      }
-    }
-    return someEmployees;
-  },
   componentDidMount: function(){
-  	var choices = this.getRandomSubarray(array, 5);
+  	var choices = helperFunctions.getRandomSubArray(this.state.employees, 5);
   	var answer = choices[Math.floor(Math.random() * 5)].name;
 
   	if(this.state.attempts.length > 0){
   		this.state.metrics.attempts.push(this.state.attempts.length);
   	}
   	this.setState({choices: choices, answer: answer, roundOver: false, attempts:[]});
-  },
-
-  findEmployee: function(name){
-  	var person_array = this.state.choices.filter(function (employee) {
-				if (employee.name === name){
-					return employee;
-				}
-			});
-		return person_array[0];
   },
   restoreStyling: function(ids){
   	var i = 0, l = ids.length;
@@ -72,19 +44,13 @@ var NameGameApp = React.createClass({
   prepareForNxtRound: function(){
   	this.restoreStyling(this.state.attempts);
   	this.componentDidMount();
-  },
-  updateMetrics: function(rightOrWrong){
-			var metrics = this.state.metrics;
-			this.setState(metrics);
-  },
+  }, 
   clickHelper: function(event, rightOrWrong, targetId, index){
   	if(rightOrWrong === 'right'){
 			this.state.roundOver = true;
 			this.state.metrics.right++;
-			// this.updateMetrics();
   	} else if(rightOrWrong === 'wrong'){
 			this.state.metrics.wrong++;
-			// this.updateMetrics();
   	} else{
   		return;
   	}
@@ -93,7 +59,7 @@ var NameGameApp = React.createClass({
 		this.state.choices.splice(index,1);
   },
   employeeClickHandler: function (event) {
-		var targetId = event.target.id, employee = this.findEmployee(targetId);
+		var targetId = event.target.id, employee = helperFunctions.findEmployee(this.state.employees, targetId);
 		var index = this.state.choices.indexOf(employee);
 
 		if(!this.state.roundOver && employee){
@@ -115,7 +81,7 @@ var NameGameApp = React.createClass({
 				this.prepareForNxtRound();
 			}.bind(this), 1500);
 		}
-	},
+	},  
   render: function() {
     return (
       <div className='main'>
