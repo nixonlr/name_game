@@ -19,7 +19,7 @@ var Employees = React.createClass({
       <div id='Employees'>
       	{this.props.choices.map(function (employee, i) {
       			return(
-      				<Employee name={employee.name} url={employee.url} employeeClickHandler=
+      				<Employee name={employee.name} url={employee.url} employeeClickHandler={this.props.employeeClickHandler} key={i} />
       			);
       		},this)
 	      }
