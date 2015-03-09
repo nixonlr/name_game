@@ -33,6 +33,18 @@ var NameGameApp = React.createClass({
 			answer: ''
 		};
   },
+  getRandomSubarray: function(size){
+  	var i = 0, index, indices = [], arrayLength = this.state.employees.length, someEmployees = [];
+    while (i < size) {
+      index = Math.floor(Math.random() * arrayLength);
+      if(indices.indexOf(index) === -1){
+      	someEmployees.push(this.state.employees[index]);
+      	indices.push(index);
+      	i++;
+      }
+    }
+    return someEmployees;
+  },
   componentDidMount: function(){
   	var choices = this.getRandomSubarray(5);
   	var answer = choices[Math.floor(Math.random() * 5)].name;
@@ -104,18 +116,6 @@ var NameGameApp = React.createClass({
 			}.bind(this), 1500);
 		}
 	},
-  getRandomSubarray: function(size){
-  	var i = 0, index, indices = [], arrayLength = this.state.employees.length, someEmployees = [];
-    while (i < size) {
-      index = Math.floor(Math.random() * arrayLength);
-      if(indices.indexOf(index) === -1){
-      	someEmployees.push(this.state.employees[index]);
-      	indices.push(index);
-      	i++;
-      }
-    }
-    return someEmployees;
-  },
   render: function() {
     return (
       <div className='main'>
