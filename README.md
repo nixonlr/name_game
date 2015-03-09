@@ -1,7 +1,8 @@
 # Name Game
 ============
 
-a work in progress
+A work in progress...
+
 ```
 $ npm install
 $ grunt serve
