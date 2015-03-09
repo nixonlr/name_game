@@ -2,6 +2,8 @@
 
 var React = require('react/addons');
 var Employee = require('./Employee');
+var ReactTransitionGroup = React.addons.TransitionGroup;
+
 
 require('styles/Employees.css');
 

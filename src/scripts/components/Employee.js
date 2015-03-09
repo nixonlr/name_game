@@ -11,12 +11,18 @@ var Employee = React.createClass({
 		return {initClass: 'rightOrWrong'};
 	},
 	componentWillReceiveProps: function(nextProps) {
-	  this.setState({initClass: 'rightOrWrong'});
+		// console.log(nextProps.answer)
+		// if(nextProps.answer === this.props.name){
+		//   this.setState({initClass: 'right'});
+		// } else {
+		// 	this.setState({initClass: 'wrong'});
+		// }
+		this.setState({initClass: 'rightOrWrong'});
 	},
   render: function(){
     return (
       <div className='Employee' >
-        <div className='rightOrWrong' id={this.props.name} onClick={this.props.employeeClickHandler}>
+        <div className={this.state.initClass} id={this.props.name} onClick={this.props.employeeClickHandler} >
 	        <p> {this.props.name} </p>
         </div>
           <img src={this.props.url} />
